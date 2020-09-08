@@ -1,10 +1,10 @@
-FROM nginx:1.19.2-alpine
+FROM ruby:2.7.1-alpine3.11
 
-RUN rm -f /etc/nginx/conf.d/*
+RUN apk update && apk upgrade
+RUN apk add --no-cache \
+    build-base
 
-COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY . /app
+WORKDIR /app
 
-RUN mkdir /root/logs
-RUN chmod 755 -R /root
-
-CMD /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/nginx.conf
+RUN bundle install

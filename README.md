@@ -6,9 +6,7 @@
 ## Usage
 
 ```
-$ docker build -t payjp-nginx .
-
-$ docker run -p 80:80 -v $(pwd)/public:/root/public --name payjp-container payjp-nginx
+$ docker-comose up --build -d
 
 $ open http://localhost/
 ```
